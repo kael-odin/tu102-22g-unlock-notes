@@ -12,6 +12,12 @@ blobs/
 *[Pp][Rr][Oo][Mm]*
 nvram*
 
+# Local-only backup of the boot USB — never published.
+# Holds BOOTX64.EFI, two 1 MiB PROM/VBIOS dumps, the unlock log and the checksum list.
+# It lives inside this working tree so everything about the card is in one place,
+# but it must never leave this machine.
+usb-backup/
+
 # Build outputs inside a local port checkout
 efi-unlock-tu102/*.EFI
 efi-unlock-tu102/*.efi
