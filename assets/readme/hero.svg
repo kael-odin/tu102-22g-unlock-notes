@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">TU102 22G UNLOCK：RTX 2080 Ti 22G 改装卡的 Windows UEFI 张量解锁实录</title>
+  <desc id="heroDesc">左侧为项目名与一句话说明：在 Windows 开机前注入解锁，FP16 张量吞吐约翻倍，不改 VBIOS、每次重启即回原厂。右侧为真实 EFI 日志，显示容量校验通过、booter 首次命中、解锁寄存器 SS0=0x88888888 与 SS1=0x8，以及 4096³ FP16 GEMM 实测 95.87 TFLOPS。</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1020"/>
+      <stop offset="1" stop-color="#0C1628"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="380" rx="18" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1199" height="379" rx="17.5" fill="none" stroke="#1F2A44"/>
+
+  <!-- title block -->
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="56" y="76" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="20" fill="#22D3EE" letter-spacing="1">TU102 · RTX 2080 Ti 22G MOD · WINDOWS UEFI</text>
+
+    <text x="54" y="152" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="54" font-weight="700" fill="#E6EDF3">TU102 22G <tspan fill="#22D3EE">UNLOCK</tspan></text>
+
+    <text x="56" y="204" font-size="22" fill="#C3D0E2">在 Windows 开机前注入解锁，</text>
+    <text x="56" y="238" font-size="22" fill="#C3D0E2">FP16 张量吞吐约翻倍，FP32 不受影响</text>
+
+    <line x1="56" y1="268" x2="620" y2="268" stroke="#1F2A44"/>
+
+    <text x="56" y="302" font-size="20" fill="#8FA3BF">不改 VBIOS · 不刷固件 · 每次重启即回原厂</text>
+    <text x="56" y="336" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#6F809B">驱动 617.42 · EnableGpuFirmware=1 · FWSEC 1516eb68</text>
+  </g>
+
+  <!-- proof card: condensed real log + measured throughput -->
+  <g>
+    <rect x="660" y="40" width="484" height="300" rx="12" fill="#070D1A" stroke="#1F2A44"/>
+    <circle cx="686" cy="64" r="5" fill="#F87171"/>
+    <circle cx="704" cy="64" r="5" fill="#FBBF24"/>
+    <circle cx="722" cy="64" r="5" fill="#34D399"/>
+    <text x="1120" y="70" text-anchor="end" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#6F809B">50hx_log.txt</text>
+    <line x1="660" y1="86" x2="1144" y2="86" stroke="#1F2A44"/>
+
+    <g font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="20">
+      <text x="684" y="120" fill="#93A4BE">[TU102] capacity=0x000002c9 <tspan fill="#34D399">OK</tspan></text>
+      <text x="684" y="150" fill="#93A4BE">booter OK (attempt 1) · mbox0=0x0</text>
+      <text x="684" y="184" font-size="22" font-weight="700" fill="#34D399">*** UNLOCKED ***</text>
+      <text x="684" y="212" fill="#34D399">SS0=0x88888888  SS1=0x8</text>
+    </g>
+
+    <line x1="684" y1="230" x2="1120" y2="230" stroke="#16233E"/>
+
+    <text x="684" y="296" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="60" font-weight="700" fill="url(#accent)">95.87</text>
+    <text x="878" y="296" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="22" fill="#22D3EE">TFLOPS</text>
+    <text x="684" y="326" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#8FA3BF">4096³ FP16 GEMM · FP32 累加 · 锁定态约 55</text>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+# Keep the working tree LF everywhere. A CRLF patch breaks `git apply`, and
+# shell scripts with CRLF fail with "bad interpreter: /bin/bash^M".
+* text=auto eol=lf
+
+*.patch  text eol=lf
+*.sh     text eol=lf
+*.ps1    text eol=lf
+*.md     text eol=lf
+*.json   text eol=lf
+*.svg    text eol=lf

@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  FIRMWARE RED LINE — never commit NVIDIA firmware or built images.
+#  This repository documents a process; it must never carry the payload.
+# ─────────────────────────────────────────────────────────────────────────────
+blobs/
+*.bin
+*.rom
+*.vbin
+*.efi
+*.EFI
+# PROM dumps (e.g. tu102_prom_300000.bin) and NVRAM backups
+*[Pp][Rr][Oo][Mm]*
+nvram*
+
+# Build outputs inside a local port checkout
+efi-unlock-tu102/*.EFI
+efi-unlock-tu102/*.efi
+!patches/*.patch
+
+# Local render/preview scratch
+.render/
+preview*.html
+
+# Boot logs can contain machine identifiers and PCI topology
+50hx_log.txt
+*-log.txt
+
+# OS clutter
+Thumbs.db
+desktop.ini
+.DS_Store

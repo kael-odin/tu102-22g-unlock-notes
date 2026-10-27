@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "gpu": "NVIDIA GeForce RTX 2080 Ti",
+    "sms": 68,
+    "vram_gib": 21.7,
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "timestamp": "2026-10-27 10:30:34",
+    "power_state_note": "record nvidia-smi power/clocks separately"
+  },
+  "fp16_gemm_fp32acc": {
+    "2048": {
+      "median_ms": 0.215,
+      "tflops": 79.97
+    },
+    "3072": {
+      "median_ms": 0.77,
+      "tflops": 75.27
+    },
+    "4096": {
+      "median_ms": 1.434,
+      "tflops": 95.87
+    }
+  },
+  "fp32_gemm_control": {
+    "2048": {
+      "median_ms": 1.282,
+      "tflops": 13.4
+    }
+  }
+}

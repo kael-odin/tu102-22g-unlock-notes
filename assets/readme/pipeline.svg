@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="250" viewBox="0 0 1200 250" role="img" aria-labelledby="pipeTitle pipeDesc">
+  <title id="pipeTitle">五阶段流程：只读转储 → FWSEC 标定 → 构建 EFI → 解锁引导 → 基准验证</title>
+  <desc id="pipeDesc">阶段 01 到 03 全程只读，产出可复用的转储与标定参数；阶段 04 只在插入 U 盘引导的那次开机内生效，写入 SS0=0x88888888 与 SS1=0x8 并链式加载 Windows；阶段 05 用基准测出 95.87 TFLOPS 并确认 FP32 对照不变。任何重启都回到原厂状态。</desc>
+
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1020"/>
+      <stop offset="1" stop-color="#0C1628"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="250" rx="18" fill="url(#pbg)"/>
+  <rect x="0.5" y="0.5" width="1199" height="249" rx="17.5" fill="none" stroke="#1F2A44"/>
+
+  <text x="600" y="40" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#8FA3BF">01–03 全程只读 · 04 只在插 U 盘引导的那次开机内生效 · 任何重启回原厂</text>
+
+  <line x1="140" y1="92" x2="1060" y2="92" stroke="#1F2A44" stroke-width="2"/>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">
+    <circle cx="140" cy="92" r="17" fill="#0E2A33" stroke="#22D3EE" stroke-width="2"/>
+    <text x="140" y="99" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" font-weight="700" fill="#67E8F9">01</text>
+    <text x="140" y="142" font-size="22" font-weight="700" fill="#E6EDF3">只读转储</text>
+    <text x="140" y="174" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#8FA3BF">capacity=0x2c9</text>
+    <text x="140" y="200" font-size="18" fill="#8FA3BF">PROM → U 盘</text>
+
+    <circle cx="370" cy="92" r="17" fill="#0E2A33" stroke="#22D3EE" stroke-width="2"/>
+    <text x="370" y="99" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" font-weight="700" fill="#67E8F9">02</text>
+    <text x="370" y="142" font-size="22" font-weight="700" fill="#E6EDF3">FWSEC 标定</text>
+    <text x="370" y="174" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#8FA3BF">iface 0x00DC</text>
+    <text x="370" y="200" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#8FA3BF">DMAP 0x380 → 0x3D0</text>
+
+    <circle cx="600" cy="92" r="17" fill="#0E2A33" stroke="#22D3EE" stroke-width="2"/>
+    <text x="600" y="99" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" font-weight="700" fill="#67E8F9">03</text>
+    <text x="600" y="142" font-size="22" font-weight="700" fill="#E6EDF3">构建 EFI</text>
+    <text x="600" y="174" font-size="18" fill="#8FA3BF">四个固件 blob 校验</text>
+    <text x="600" y="200" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#8FA3BF">TU102UNLK.EFI</text>
+
+    <circle cx="830" cy="92" r="19" fill="#271A05" stroke="#F59E0B" stroke-width="2"/>
+    <text x="830" y="99" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" font-weight="700" fill="#FCD34D">04</text>
+    <text x="830" y="142" font-size="22" font-weight="700" fill="#FCD34D">解锁引导</text>
+    <text x="830" y="174" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#FCD34D">SS0=0x88888888</text>
+    <text x="830" y="200" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#FCD34D">SS1=0x8 · 链载 Win</text>
+
+    <circle cx="1060" cy="92" r="17" fill="#0C2A22" stroke="#34D399" stroke-width="2"/>
+    <text x="1060" y="99" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" font-weight="700" fill="#6EE7B7">05</text>
+    <text x="1060" y="142" font-size="22" font-weight="700" fill="#E6EDF3">基准验证</text>
+    <text x="1060" y="174" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="18" fill="#34D399">95.87 TFLOPS</text>
+    <text x="1060" y="200" font-size="18" fill="#8FA3BF">FP32 对照不变</text>
+  </g>
+</svg>

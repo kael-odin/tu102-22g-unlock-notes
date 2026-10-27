@@ -1,0 +1,54 @@
+diff --git a/efi-unlock-tu102/unlock50x_v1.c b/efi-unlock-tu102/unlock50x_v1.c
+index 9ca01c8..924dda6 100644
+--- a/efi-unlock-tu102/unlock50x_v1.c
++++ b/efi-unlock-tu102/unlock50x_v1.c
+@@ -308,7 +308,10 @@ u40x_entry(EFI_HANDLE ImageHandle_, EFI_SYSTEM_TABLE *SystemTable_)
+  * for the dump-only phase; 22 GiB geometry constants are adapted separately
+  * after the native PROM capture (see PORT-NOTES.md).
+  * ==========================================================================*/
+-#define U40X_TARGET_DID         0x1E04u
++/* Local port target: RTX 2080 Ti 22G mod Rev.A (10de:1e07, subsys 10de:12a4).
++ * Upstream tested 0x1E04 (non-A). 22 GiB capacity guard 0x100ce0==0x2c9 still
++ * applies unchanged; only the PCI search id differs. */
++#define U40X_TARGET_DID         0x1E07u
+ 
+ #define VAL_PLM_OPEN            0xFFFFFFFFUL
+ #define VAL_SS0_UNLOCKED        0x88888888UL
+@@ -553,13 +556,17 @@ extern const UINT8 gsp_bl_tu102[];
+  * span 0xE00 -> 0x057FE000/0x057FEE00 (KohakUnlock post-FWSEC live values).
+  * Upstream 50HX values were: 0x9A00/0x9A00/0x3F0/0x9DF0/0x360/0x3B0 and
+  * 0x27FE00000/0x027FE000/0x027FEE00 at fbSize 0x280000000 (10 GiB). */
+-#define FW50_CODE_SIZE          0x00009800UL   /* imemLoad */
+-#define FW50_DATA_OFF           0x00009800UL   /* data start inside the blob */
+-#define FW50_DMEM_SIZE          0x00000420UL   /* dmemLoad */
+-#define FW50_BLOB_SIZE          0x00009C20UL   /* code+data = 39968 */
+-#define FW50_IFACE_OFF          0x000000E0UL   /* interface header inside data */
+-#define FW50_MAPPER_OFF         0x00000390UL   /* DMEMMAPPER v3 (id4 entry) */
+-#define FW50_CMDIN_OFF          0x000003E0UL   /* cmd_in_buffer */
++/* Calibrated for THIS card: VBIOS 90.02.0b family, fwsec sha256 1516eb68...
++ * (39440 B). Derived from local-dump/fwsec_50hx_desc.json + byte-verified:
++ * iface hdr {1,4,8,2} @DMEM+0xDC, id4 entry -> 0x380 ("DMAP"), DMAP[2]=0x3D0.
++ * Upstream 22G card (c6fa28fa) values were 0x9800/0x9800/0x420/0x9C20/0xE0/0x390/0x3E0. */
++#define FW50_CODE_SIZE          0x00009600UL   /* imemLoad */
++#define FW50_DATA_OFF           0x00009600UL   /* data start inside the blob */
++#define FW50_DMEM_SIZE          0x00000410UL   /* dmemLoad */
++#define FW50_BLOB_SIZE          0x00009A10UL   /* code+data = 39440 */
++#define FW50_IFACE_OFF          0x000000DCUL   /* interface header inside data */
++#define FW50_MAPPER_OFF         0x00000380UL   /* DMEMMAPPER v3 (id4 entry) */
++#define FW50_CMDIN_OFF          0x000003D0UL   /* cmd_in_buffer */
+ #define FW50_FRTS_OFFSET        0x57FE00000ULL /* frtsOffset (22GB FB - 2MB) */
+ #define FW50_WPR2_LO_UP         0x057FE000UL
+ #define FW50_WPR2_HI_UP         0x057FEE00UL
+@@ -633,9 +640,9 @@ detect_fb_size(EFI_HANDLE IH)
+  * Inside the image: code = [NS 0x0..0x400][SEC 0x400..0x9a00] laid back-to-back;
+  * Loaded to IMEM: NS@0 (sec=0) -> SEC@0x400 (sec=1), tag each 256B with IMEMT
+  * (same semantics as the TU102 driver s_prepareHsFalconDirect / s_imemCopyTo_TU102). */
+-#define FW50_NS_SIZE            0x00000400UL   /* image[0..0x400) NS segment */
+-#define FW50_SEC_BASE           0x00000400UL   /* secure segment IMEM / image start */
+-#define FW50_SEC_SIZE           0x00009400UL   /* image[0x400..0x9800) SEC segment */
++#define FW50_NS_SIZE            0x00000300UL   /* image[0..0x300) NS segment */
++#define FW50_SEC_BASE           0x00000300UL   /* secure segment IMEM / image start */
++#define FW50_SEC_SIZE           0x00009300UL   /* image[0x300..0x9600) SEC segment */
+ #define FW50_TAG_NS             0x00000000UL   /* NS tag start (target>>8) */
+ #define FW50_TAG_SEC            0x00000004UL   /* SEC tag start (0x400>>8) */
+ 
