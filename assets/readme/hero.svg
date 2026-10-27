@@ -51,6 +51,6 @@
 
     <text x="684" y="296" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="60" font-weight="700" fill="url(#accent)">95.87</text>
     <text x="878" y="296" font-family="ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace" font-size="22" fill="#22D3EE">TFLOPS</text>
-    <text x="684" y="326" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#8FA3BF">4096³ FP16 GEMM · FP32 累加 · 锁定态约 55</text>
+    <text x="684" y="326" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#8FA3BF">4096³ FP16 GEMM · FP32 累加 · 锁定态约 54</text>
   </g>
 </svg>
